@@ -22,9 +22,14 @@ for (app in app_list) {
 
   // Loop through saved windows and apply bounds to anything that matches.
   for (app_window in app_windows) {
-    app_window_name = app_windows[app_window].name()
-    if (app_window_name in saved_windows) {
-      Application(app_name).windows[app_window].bounds = saved_windows[app_window_name];
+    // Some windows don't have a .name() function (meaning they don't support applescript
+    try {
+      app_window_name = app_windows[app_window].name()
+      if (app_window_name in saved_windows) {
+        Application(app_name).windows[app_window].bounds = saved_windows[app_window_name];
+      }
+    } catch (e) {
+      continue;
     }
   }
 }
