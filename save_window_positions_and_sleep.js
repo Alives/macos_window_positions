@@ -33,5 +33,8 @@ app.setEof(file, { to: 0 });
 app.write(JSON.stringify(saved_positions), {to: file});
 app.closeAccess(file);
 
+// Kill KeepingYouAwake
+Application('KeepingYouAwake').quit();
+
 // Sleep the computer
 Application("System Events").sleep();
